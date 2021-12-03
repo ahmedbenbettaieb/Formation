@@ -1,0 +1,71 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Quiz and Test {% endblock %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-striped text-center" >
+        <thead>
+        <tr>
+            <th colspan="5" class="text-center"><h1 >Quiz </h1></th>
+        </tr>
+        <tr>
+            <th>Sujet</th>
+            <th>Formateur</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizzes %}
+            <tr>
+                <td>{{ quiz.sujet }}</td>
+                <td>{{ quiz.idFormateur.prenom|upper }}  {{ quiz.idFormateur.prenom|upper }}</td>
+                <td>
+                    <a href="/quiz_admin/showQuiz/{{ quiz.id }}"><i style="font-size:24px;color: #072366;" class="fa fa-eye" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="table table-striped text-center" style="margin-top: 75px;">
+        <thead>
+        <tr>
+            <th colspan="6" class="text-center"><h1 >Test</h1></th>
+        </tr>
+        <tr>
+            <th>Sujet</th>
+            <th>Formateur</th>
+            <th>NbEtudiantPasses</th>
+            <th>NbEtudiantsAdmis</th>
+            <th>Duree</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for test in tests %}
+            <tr>
+                <td>{{ test.sujet }}</td>
+                <td>{{ test.idFormateur.prenom|upper }}  {{ test.idFormateur.nom|upper }}</td>
+                <td>{{ test.nbEtudiantPasses }}</td>
+                <td>{{ test.nbEtudiantsAdmis }}</td>
+                <td>{{ test.duree }} min(s)</td>
+                <td>
+                    <a href="/quiz_admin/showTest/{{ test.id }}"><i style="font-size:24px;color: #072366;" class="fa fa-eye" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+

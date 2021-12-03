@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="margin-top: 150px"></h1>
+    <h1  class="text-center"> Quiz : {{ quiz.sujet }}</h1>
+       {% set i = 1 %}
+        {% for question in quiz.questions %}
+            {{  include('quiz_and_test_front/_form_answers.html.twig') }}
+            {% set i = i + 1 %}
+        {% endfor %}
+       <a href="/quiz_front">
+           <button style="width: 25%;margin: auto;margin-top: 50px;" class="btn btn-dark btn-lg btn-block">Espace Quiz</button>
+       </a>
+{% endblock %}

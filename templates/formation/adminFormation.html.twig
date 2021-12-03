@@ -1,0 +1,41 @@
+{% extends 'admin.html.twig' %}
+
+
+
+{% block body %}
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h1 align="center"> <strong>Formations</strong></h1>
+        </div></div>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th style="text-align:center";>Titre</th>
+            <th style="text-align:center";>Note</th>
+            <th style="text-align:center";>Description</th>
+            <th style="text-align:center";>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+
+                <td >{{ formation.titre }}</td>
+                <td >{{ formation.note }}</td>
+                <td class="desc" >{{ formation.description }}</td>
+                <td width="200px" align="center">
+
+                    <a class="submit-btn2" href="{{ path('formation_showsingleformAdmin', {'id': formation.id}) }}">show</a>
+                    {{ include('formation/delete_form_admin.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

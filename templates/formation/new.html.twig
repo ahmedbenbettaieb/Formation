@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Formation{% endblock %}
+
+{% block body %}
+    <br><br><br><br>
+    <h1>Create new Formation</h1>
+<div class="container" data-aos="fade-up">
+
+    <div class="row">
+        <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="content">
+                <h3>Why Choose Mentor?</h3>
+                {{ include('formation/_form.html.twig') }}
+                <div class="text-center">
+                    <a href="about.html" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <a href="{{ path('formation_index') }}">back to list</a>
+
+{% endblock %}

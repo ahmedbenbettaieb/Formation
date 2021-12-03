@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="margin-top: 150px;">Créer Un Quiz</h1>
+
+    {{ include('quiz/_form.html.twig') }}
+
+    <a href="{{ path('quiz_index',{'id':app.user.id}) }}">back to list</a>
+{% endblock %}

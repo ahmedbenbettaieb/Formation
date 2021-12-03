@@ -1,0 +1,52 @@
+<head>
+	<title>E-Senpai Plateforme E-Learning</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="img/icon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+
+{% block body %}
+<div class="wrap-login100">
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <div>
+        <h1>S'inscrire</h1>
+        <br>
+        <a href="/login">S'authentifier</a><br>
+        <img src="img/img-01.png" alt="IMG">
+        <a href="/register-formateur"><h5>Inscrire en tant que Formateur</h5></a>
+    </div>
+
+    {{ form_start(registrationForm, {'attr':{'class':"login100-form validate-form"}}) }}
+        {{ form_row(registrationForm.nom, {'attr':{'class':'input100'}}) }}
+        {{ form_row(registrationForm.prenom, {'attr':{'class':'input100'}}) }}
+        {{ form_row(registrationForm.sexe, {'attr':{'class':'input100'}}) }}
+        {{ form_row(registrationForm.dateNaissance) }}
+        {{ form_row(registrationForm.email, {'attr':{'class':'input100'}}) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password',
+            'attr':{'class':'input100'}
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="login100-form-btn">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}

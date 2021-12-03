@@ -1,0 +1,33 @@
+{% extends 'admin.html.twig' %}
+
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Quiz</h1>
+        <table class="table table-striped text-center" >
+            <tbody>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ quiz.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Formateur</th>
+                <td>{{ quiz.idFormateur.prenom|upper }}  {{ quiz.idFormateur.nom|upper }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="questions" style="margin-top: 75px;margin-left: 20%">
+            <h1 class="text-center">Questionnaire</h1>
+            {%  set i = 1 %}
+            {% for question in questionquizzes %}
+                {{  include('quiz_and_test_front/_form_answers.html.twig') }}
+                {%  set i = i + 1 %}
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+        </div>
+    </div>
+    <h1 style="margin-bottom: 100px;"></h1>
+{% endblock %}

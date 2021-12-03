@@ -1,0 +1,104 @@
+
+<style>
+    h1{
+        color: #D75404;
+        font-weight: 100;
+        font-size: 40px;
+        margin: 40px 0px 20px;
+    }
+
+    #clockdiv{
+        font-family: sans-serif;
+        color: #fff;
+        display: inline-block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 30px;
+        margin-left:  65%;
+        position:fixed;
+        z-index: 1;
+    }
+
+    #clockdiv > div{
+        padding: 10px;
+        border-radius: 3px;
+        background: #f2935a;
+        display: inline-block;
+    }
+
+    #clockdiv div > span{
+        padding: 15px;
+        border-radius: 3px;
+        background: #D75404;
+        display: inline-block;
+    }
+
+    .smalltext{
+        padding-top: 5px;
+        font-size: 16px;
+    }
+</style>
+<body>
+<div id="clockdiv">
+    <div>
+        <span id="hours"></span>
+        <div class="smalltext">Heures</div>
+    </div>
+    <div>
+        <span id="minutes"></span>
+        <div class="smalltext">Minutes</div>
+    </div>
+    <div>
+        <span id="seconds"></span>
+        <div class="smalltext">Seconds</div>
+    </div>
+</div>
+<script>
+    var duree = {{ test.duree }} ;
+    var timeleft = /*30000 ;*/ (duree * 60 * 1000);
+
+    var myfunc = setInterval(function() {
+
+        var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+        document.getElementById("hours").innerHTML = hours +"";
+        document.getElementById("minutes").innerHTML = minutes + " " ;
+        document.getElementById("seconds").innerHTML = seconds + " ";
+
+        timeleft = (timeleft - 1000) ;
+
+        if(timeleft == 300000 ){
+            alert("le devoir se termine dans 5 mins") ;
+        }
+
+         if (timeleft < 0) {
+             document.getElementById("myForm").submit();
+             clearInterval(myfunc);
+         }
+    }, 1000);
+
+    function  validerTest()
+    {
+        var isChecked = true ;
+        {% for question in test.questions %}
+        //  var inputId = {{ question.designation }}
+        var getSelectedValue = document.querySelector('input[name="{{ question.designation }}"]:checked');
+
+        if(getSelectedValue == null) {
+            isChecked = false ;
+        }
+
+        {% endfor %}
+
+        if(!isChecked)
+        {
+            document.getElementById("error").innerHTML = "*veuillez tout crocher";
+        }
+        else{
+            document.getElementById("myForm").submit() ;
+        }
+    }
+</script>
+</body>

@@ -1,0 +1,101 @@
+<div class="card" style="margin-top: 25px;">
+    <div class="card-header">
+        <h3 style="margin-top: 15px">Q.{{ i }}/ {{ question.designation }}   <small>{{ question.note }} point(s)</small></h3>
+    </div>
+    <div class="card-body">
+{% set val = random(0,3) %}
+{% if val == 0 %}
+    <div class="question">
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseCorrecte }}" name="{{ question.designation }}"
+                   value="{{ question.reponseCorrecte }}" checked disabled>
+            <label style="color: red" class="custom-control-label" for="{{ question.reponseCorrecte }}">{{ question.reponseCorrecte }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse1 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse1 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse1 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse2 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse2 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse2 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse3 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse3 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse3 }}">{{ question.reponseFausse3 }}</label>
+        </div>
+    </div>
+{% elseif val == 1 %}
+    <div class="question">
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse1 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse1 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse1 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseCorrecte }}" name="{{ question.designation }}"
+                   value="{{ question.reponseCorrecte }}" checked disabled>
+            <label style="color: red" class="custom-control-label" for="{{ question.reponseCorrecte }}">{{ question.reponseCorrecte }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse2 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse2 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse2 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse3 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse3 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse3 }}">{{ question.reponseFausse3 }}</label>
+        </div>
+    </div>
+{% elseif val == 2 %}
+    <div class="question">
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse1 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse1 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse1 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse2 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse2 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse2 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseCorrecte }}" name="{{ question.designation }}"
+                   value="{{ question.reponseCorrecte }}" checked disabled>
+            <label style="color: red" class="custom-control-label" for="{{ question.reponseCorrecte }}">{{ question.reponseCorrecte }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse3 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse3 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse3 }}">{{ question.reponseFausse3 }}</label>
+        </div>
+    </div>
+{% elseif val == 3 %}
+    <div class="question">
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse1 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse1 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse1 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse2 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse2 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse2 }}">{{ question.reponseFausse1 }}</label>
+        </div>
+        <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseFausse3 }}" name="{{ question.designation }}"
+                   value="{{ question.reponseFausse3 }}" disabled>
+            <label class="custom-control-label" for="{{ question.reponseFausse3 }}">{{ question.reponseFausse3 }}</label>
+        </div>
+        <div class="custom-control custom-radio text-danger">
+            <input type="radio" class="custom-control-input" id="{{ question.reponseCorrecte }}" name="{{ question.designation }}"
+                   value="{{ question.reponseCorrecte }}" checked disabled>
+            <label style="color: red" class="custom-control-label " for="{{ question.reponseCorrecte }}">{{ question.reponseCorrecte }}</label>
+        </div>
+    </div>
+{% endif %}
+    </div>
+</div>

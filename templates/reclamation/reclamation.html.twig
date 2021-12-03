@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos Réclamations !{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h4>Vos réclamations</h4>
+        <section id="why-us" class="why-us">
+        <div class="container" data-aos="fade-up">
+        <div class="col-lg-8 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-boxes d-flex flex-column justify-content-center">
+        <div class="row">
+        {% for reclamation in reclamations %}
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-receipt"></i>
+                    <h4>{{ reclamation.sujetReclamation }}</h4>
+                    <p>{{ reclamation.contenu }}</p>
+                    <h5>{{ reclamation.statut }}</h5>
+                    <a href="{{ path('reclamation_print', {'id': reclamation.id}) }}">Imprimer</a>
+                  </div>
+                </div>
+        {% else %}
+            
+        {% endfor %}
+        </div>
+        </div>
+        </div>
+        </div>
+         </section>
+    <br>
+    <a href="{{ path('add_reclamation', {'id': app.user.id}) }}" class="get-started-btn">Envoyer Réclamation</a>
+    <br>
+
+{% endblock %}
+
+        
+                
+            

@@ -1,0 +1,23 @@
+{% extends 'admin.html.twig' %}
+
+{% block header %}
+
+{% endblock %}
+{% block body %}
+<br>
+<br>
+<br>
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <a href="{{ path('approuver_formateur', {'id': user.id}) }}" class="submit-btn2">Approuver</a>
+</div>
+<section class="contact-section">
+    <div class="container">
+        <embed  src="{{ asset('http://127.0.0.1/img/' ~ user.curriculumVitae) }}" width=1000 height=800 type='application/pdf'/>
+    </div>
+</section>
+  
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+    <h1>Mes formations</h1>
+    </div></div>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th style="text-align:center";>Titre</th>
+                <th style="text-align:center";>Note</th>
+                <th style="text-align:center";>Description</th>
+                <th style="text-align:center";>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+
+                <td >{{ formation.titre }}</td>
+                <td >{{ formation.note }}</td>
+                <td class="desc" >{{ formation.description }}</td>
+                <td width="200px">
+
+                    <a class="get-buton-tab" href="{{ path('formation_showsingleform', {'id': formation.id}) }}">show</a>
+                    <a class="get-buton-tab" href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+                    {{ include('formation/_delete_form.html.twig') }}
+
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

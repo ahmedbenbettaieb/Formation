@@ -1,0 +1,10 @@
+<form method="post" action="{{ path('formation_showslide', {'id': slide.id}) }}" >
+    <input type="hidden" name="_token" value="{{ csrf_token('showslide' ~ slide.id) }}">
+    <div align="center">
+        <video width="800" height="400" controls>
+            <source src="{{ asset('http://127.0.0.1/img/' ~ slide.videoSlide) }} ">
+        </video>
+
+    </div>
+
+</form>

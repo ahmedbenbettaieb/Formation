@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1 class="text-center" style="margin-top: 150px;">Question test</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Question Posée</th>
+                <td>{{ questiontest.designation }}</td>
+            </tr>
+            <tr>
+                <th>Reponse Correcte</th>
+                <td>{{ questiontest.reponseCorrecte }}</td>
+            </tr>
+            <tr>
+                <th>Reponse Fausse1</th>
+                <td>{{ questiontest.reponseFausse1 }}</td>
+            </tr>
+            <tr>
+                <th>Reponse Fausse2</th>
+                <td>{{ questiontest.reponseFausse2 }}</td>
+            </tr>
+            <tr>
+                <th>Reponse Fausse3</th>
+                <td>{{ questiontest.reponseFausse3 }}</td>
+            </tr>
+            <tr>
+                <th>Points</th>
+                <td>{{ questiontest.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('test_show',{'id':questiontest.idTest.id}) }}">back to list</a>
+
+    <a href="{{ path('questiontest_edit', {'id': questiontest.id}) }}"><i style="font-size:24px;margin-left: 20px;" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
+    {{ include('questiontest/_delete_form.html.twig') }}
+{% endblock %}

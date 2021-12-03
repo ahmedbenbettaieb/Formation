@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Slide index{% endblock %}
+
+{% block body %}
+    <h1>Slide index</h1>
+    <br><br><br><br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>VideoSlide</th>
+                <th>ImageSlide</th>
+                <th>TextSlide</th>
+                <th>Ordre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for slide in slides %}
+            <tr>
+                <td>{{ slide.id }}</td>
+                <td>{{ slide.videoSlide }}</td>
+                <td>{{ slide.imageSlide }}</td>
+                <td>{{ slide.textSlide }}</td>
+                <td>{{ slide.ordre }}</td>
+                <td>
+                    <a href="{{ path('slide_show', {'id': slide.id}) }}">show</a>
+                    <a href="{{ path('slide_edit', {'id': slide.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

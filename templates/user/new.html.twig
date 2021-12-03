@@ -1,0 +1,27 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+    <h3>Ajouter Admin</h3>
+    <div class="col-lg-8">
+    {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.dateNaissance) }}
+        <br>
+        {{ form_row(form.sexe) }}
+        <br>
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+        {{ form_row(form.biography) }}
+        {{ form_row(form.photoProfil)}}
+        <button class="btn">{{ button_label|default('Ajouter') }}</button>
+    {{ form_end(form) }}
+    </div>
+    <br>
+    <a href="{{ path('user_index') }}"><font color="blue">Retour</font></a>
+{% endblock %}

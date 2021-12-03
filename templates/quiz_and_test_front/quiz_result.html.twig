@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="margin-top: 150px"></h1>
+    <h1  class="text-center"> Resultat Quiz</h1>
+    <h1 class="text-center">Sujet : {{ quiz.sujet }}</h1>
+    <h3 class="text-center">Note Obtenue : {{ note }}/{{ totalpoints }}</h3>
+    <h3 class="text-center">Pourcentage Bonne Reponse : {{ percent }} %</h3>
+    {% if percent < 100 %}
+        <div class="row">
+            <div class="col"></div>
+            <div class="col ">
+                <h1 class="text-center" style="margin-top: 15px;"><a href="{{ path('take_quiz',{'id':quiz.id}) }}">Réessayer</a></h1>
+            </div>
+            <div class="col ">
+                <h1 class="" style="margin-top: 15px;"><a href="{{ path('answers_quiz',{'id':quiz.id}) }}">Correction</a></h1>
+            </div>
+            <div class="col"></div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col">
+            <h3 style="margin-top: 75px;" class="text-center"><a href="/quiz_front">Espace Quiz & Test</a></h3>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>E-Senpai Admin Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href={{ asset("img/icon.png")}}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- CSS here -->
+	<link rel="stylesheet" href={{ asset("admin/css/bootstrap.min.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/owl.carousel.min.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/slicknav.css")}}>
+    <link rel="stylesheet" href={{ asset("admin/css/flaticon.css")}}>
+    <link rel="stylesheet" href={{ asset("admin/css/progressbar_barfiller.css")}}>
+    <link rel="stylesheet" href={{ asset("admin/css/gijgo.css")}}>
+    <link rel="stylesheet" href={{ asset("admin/css/animate.min.css")}}>
+    <link rel="stylesheet" href={{ asset("admin/css/animated-headline.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/magnific-popup.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/fontawesome-all.min.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/themify-icons.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/slick.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/nice-select.css")}}>
+	<link rel="stylesheet" href={{ asset("admin/css/style.css")}}>
+
+    <style>
+    .question{
+      margin-left: 50px;
+      margin-top: 8px;
+    }
+    </style>
+</head>
+<body>
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src={{ asset("admin/img/logo/loder.png")}} alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    {% block header %}
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header ">
+                
+                <div class="header-bottom  header-sticky">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                {% if app.user %}<a href="/logout" class="submit-btn2">Déconnecter</a>{% endif %}
+                            </div>
+                            <div class="col-xl-9 col-lg-8">
+                                <div class="menu-wrapper  d-flex align-items-center">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav> 
+                                            <ul id="navigation">                                                                                          
+                                                <li><a href="/admin/dashboard">Accueil</a></li>
+                                                <li><a href="/user/">Gestion Users</a>
+                                                <li><a href="/admin/reclamation">Réclamations</a></li>
+                                                </li>
+                                                <li><a href="/formation/accueilFormAdmin">Formations</a></li>
+
+                                            </ul>
+                                        </nav>
+                                        
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    {% endblock %}
+    {% block body %}
+    <h1>Test</h1>
+    {% endblock %}
+    
+    <!--? Search model Begin -->
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Searching key.....">
+            </form>
+        </div>
+    </div>
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS here -->
+
+    <script src={{ asset("admin/js/vendor/modernizr-3.5.0.min.js")}}></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src={{ asset("admin/js/vendor/jquery-1.12.4.min.js")}}></script>
+    <script src={{ asset("admin/js/popper.min.js")}}></script>
+    <script src={{ asset("admin/js/bootstrap.min.js")}}></script>
+    <!-- Jquery Mobile Menu -->
+    <script src={{ asset("admin/js/jquery.slicknav.min.js")}}></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src={{ asset("admin/js/owl.carousel.min.js")}}></script>
+    <script src={{ asset("admin/js/slick.min.js")}}></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src={{ asset("admin/js/wow.min.js")}}></script>
+    <script src={{ asset("admin/js/animated.headline.js")}}></script>
+    <script src={{ asset("admin/js/jquery.magnific-popup.js")}}></script>
+
+    <!-- Date Picker -->
+    <script src={{ asset("admin/js/gijgo.min.js")}}></script>
+    <!-- Nice-select, sticky -->
+    <script src={{ asset("admin/js/jquery.nice-select.min.js")}}></script>
+    <script src={{ asset("admin/js/jquery.sticky.js")}}></script>
+    <!-- Progress -->
+    <script src={{ asset("admin/js/jquery.barfiller.js")}}></script>
+    
+    <!-- counter , waypoint,Hover Direction -->
+    <script src={{ asset("admin/js/jquery.counterup.min.js")}}></script>
+    <script src={{ asset("admin/js/waypoints.min.js")}}></script>
+    <script src={{ asset("admin/js/jquery.countdown.min.js")}}></script>
+    <script src={{ asset("admin/js/hover-direction-snake.min.js")}}></script>
+
+    <!-- contact js -->
+    <script src={{ asset("admin/js/contact.js")}}></script>
+    <script src={{ asset("admin/js/jquery.form.js")}}></script>
+    <script src={{ asset("admin/js/jquery.validate.min.js")}}></script>
+    <script src={{ asset("admin/js/mail-script.js")}}></script>
+    <script src={{ asset("admin/js/jquery.ajaxchimp.min.js")}}></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src={{ asset("admin/js/plugins.js")}}></script>
+    <script src={{ asset("admin/js/main.js")}}></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="margin-top: 150px"></h1>
+    <h1 style="margin-bottom: 25px" class="text-center"> Votre Certificat </h1>
+    <div class="card img-fluid" style="">
+        <img class="card-img-top" src="{{ asset('/img/certificat.jpg') }}" alt="Card image" style="width:100%">
+        <div class="card-img-overlay">
+            <h1 class="card-title text-center" style="margin-top: 310px">{{ app.user.prenom }}  {{ app.user.nom }}</h1>
+            <h4 class="card-text text-center" style="margin-top: 110px;color: #D75404;">{{ test.sujet }}</h4>
+            <h4 class="card-text text-right" style="margin-top: 95px;margin-right: 250px;">{{ test.idFormateur.nom }}  {{ test.idFormateur.prenom }}</h4>
+        </div>
+    </div>
+    <h1 class="text-center" style="margin-top: 15px;"><a target="_blank" href="{{ path('download',{'id':test.id}) }}">Télécharger</a></h1>
+{% endblock %}
+

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<main id="main" data-aos="fade-in">
+
+    <br>
+    <br>
+
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+        
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+            {% if app.user.photoProfil == null or  app.user.photoProfil == "" %}
+            {% if app.user.sexe == "Homme" %}
+              <img src="img/homme.png" class="img-fluid" alt="">
+            {% else %}
+               <img src="img/femme.png" class="img-fluid" alt=""> 
+            {% endif %}
+            {% else %}
+               <img src="{{ asset('http://127.0.0.1/img/' ~ app.user.photoProfil) }}" class="img-fluid" alt="">
+            {% endif %}
+            </div>
+          </div>
+            <!--<div class="social">
+                  <a href="">Modifier votre profil <i class="icofont-edit"></i></a>
+            </div> -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <div class="member-content">
+              <br>
+                <h4>{{ app.user.nom ~ " " ~ app.user.prenom }}</h4>
+                <span>{{ app.user.role }}</span>
+                <span>{{ app.user.sexe }}</span>
+                <span>{{ app.user.email }}</span>
+                <p>
+                  {{ app.user.biography }}
+                </p>
+                <p>
+                  {{ app.user.dateNaissance }}
+                </p>
+                <a href="/user/{{app.user.id}}/edit" class="get-started-btn">Modifier votre profil</a>
+                <br>
+                <br>
+                <a href="/post" class="get-started-btn">Mes posts</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Trainers Section -->
+
+  </main>
+{% endblock %}

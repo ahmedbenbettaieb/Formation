@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Questiontest{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center" style="margin-top: 150px">Modifier Question </h1>
+    {{ include('questiontest/_delete_form.html.twig') }}
+
+    {{ include('questiontest/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('test_show',{'id':questiontest.idTest.id}) }}">back to list</a>
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test index{% endblock %}
+
+{% block body %}
+
+  <h1 style="margin-top: 150px;"></h1>
+
+    <form action="{{ path('test_index',{'id':app.user.id}) }}" method="post">
+        <div class="input-group " style="width: 60%;margin: auto">
+            <input type="text" class="form-control" placeholder="rechercher ..." id="search" name="search" value="{{ search }}">
+            <div class="input-group-append" style="background-color: #D75404">
+                <span class="input-group-text" style="height: 36px;background-color: #D75404">
+                     <button style="border: none;color: white;background-color: #D75404">{{ button_label|default('Rechercher') }}</button>
+                </span>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="4"><h1 >Test</h1></th>
+            <th><h5> <a href="{{ path('test_new',{'id': app.user.id}) }}"><i style="font-size: 24px" class="fa fa-plus-square" aria-hidden="true"></i> New Test</a></h5></th>
+        </tr>
+            <tr>
+                <th>Sujet</th>
+                <th>NbEtudiantPasses</th>
+                <th>NbEtudiantsAdmis</th>
+                <th>Duree</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for test in tests %}
+            <tr>
+                <td>{{ test.sujet }}</td>
+                <td>{{ test.nbEtudiantPasses }}</td>
+                <td>{{ test.nbEtudiantsAdmis }}</td>
+                <td>{{ test.duree }}</td>
+                <td>
+                    <a href="{{ path('test_show', {'id': test.id}) }}"><i style="font-size:24px;" class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('test_edit', {'id': test.id}) }}">   <i style="font-size:24px;margin-left: 20px;" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

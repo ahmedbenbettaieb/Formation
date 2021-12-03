@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+<div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+    <h1>Formation</h1>
+    </div>
+</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formation.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ formation.titre }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ formation.note }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ formation.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>VideoSlide</th>
+            <th>ImageSlide</th>
+            <th>TextSlide</th>
+            <th>Ordre</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for slide in slides %}
+            <tr>
+                <td>{{ slide.id }}</td>
+                <td>{{ slide.videoSlide }}</td>
+                <td>{{ slide.imageSlide }}</td>
+                <td>{{ slide.textSlide }}</td>
+                <td>{{ slide.ordre }}</td>
+                <td>
+                    <a href="{{ path('slide_show', {'id': slide.id}) }}">show</a>
+                    <a href="{{ path('slide_edit', {'id': slide.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="get-started-btn" href="{{ path('formation_index') }}">back to list</a>
+
+    <a class="get-started-btn" href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+
+    {{ include('formation/_delete_form.html.twig') }}
+{% endblock %}

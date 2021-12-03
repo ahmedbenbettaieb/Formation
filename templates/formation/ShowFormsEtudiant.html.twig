@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous Les Formations{% endblock %}
+
+{% block body %}
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h2>Mes formations</h2>
+            <p>
+                Bienvenue {{ app.user.prenom }} à tous les formations !
+            </p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+    <!-- ======= Courses Section ======= -->
+    <div class="footer-top">
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <form action="" method="post">
+                        <div class="input-group">
+                            <input  type="text" name="titre"placeholder='Rechercher par titre'
+                                    onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Rechercher par titre'"/>
+
+                            <button type="submit" class="btn btn-outline-danger">Recherche</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <section id="courses" class="courses">
+
+        <div class="container" data-aos="fade-up" >
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                {% for formation in formations %}
+                {% for abonnement in abonnements %}
+                    {% if formation == abonnement.idFormation  %}
+                    <div class="col-lg-4 col-md-6  align-items-stretch">
+                        <div class="course-item" >
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4>Cours</h4>
+                                    <p class="price">Gratuit</p>
+                                </div>
+                                {% if app.user.role =='Formateur' %}
+                                    <h3><a href="{{ path('formation_showsingleform', {'id': formation.id}) }}">{{ formation.titre }}</a></h3>
+                                {% else %}
+                                    <h3><a href="{{ path('formation_showsingleformEtudiant', {'id': formation.id , 'idUser':app.user.id}) }}">{{ formation.titre }}</a></h3>
+                                {% endif %}
+                                <p>{{ formation.description}}</p>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+
+                                    <div class="trainer-rank d-flex align-items-center">
+                                        <i class="bx bx-user"></i>&nbsp;
+                                        &nbsp;&nbsp;
+                                        <i class="bx bx-heart"></i>&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End Course Item-->
+
+            {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {{ knp_pagination_render(formations)}}
+        </div>
+
+    </section><!-- End Courses Section -->
+{% endblock %}

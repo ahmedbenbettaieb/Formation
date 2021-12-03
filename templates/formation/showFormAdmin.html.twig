@@ -1,0 +1,109 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Tous Les Formations{% endblock %}
+
+{% block body %}
+    <!-- ======= Breadcrumbs ======= -->
+  <br><br>
+    <!-- End Breadcrumbs -->
+    <h1 align="center"  style="text-transform:uppercase; font-size:50px;" ><strong> {{ formation.titre }}</strong></h1><br>
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
+
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <h3><strong>Formation du {{ formation.titre }}</strong></h3>
+                    <p>
+                        Formation du {{ formation.description}} </p>
+                </div>
+                <hr/>
+                <div class="col-lg-4">
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Formateur</h5>
+                        <p><a href="#" style="color: #8A2C02; "> <strong>{{ user.prenom }}</strong></a></p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Frais de cours</h5>
+                        <p>Gratuit</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Note</h5>
+                        <p>{{ formation.note }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Cource Details Section -->
+<br><br><hr/>
+    <!-- ======= Cource Details Tabs Section ======= -->
+    <section id="cource-details-tabs" class="cource-details-tabs">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-3 " >
+                    <ul class="nav nav-tabs flex-column">
+                        {% for slide in slides %}
+                            {% if slide.textSlide is empty and slide.videoSlide is empty %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show " style="color: #8A2C02" data-toggle="tab" href="#{{slide.imageSlide|replace({'.': ''})}}">{{slide.imageSlide}}</a>
+                                </li>
+                            {% elseif slide.imageSlide is empty and slide.videoSlide is empty %}
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #8A2C02" data-toggle="tab" href="#{{slide.textSlide|replace({'.': ''})}}">{{slide.textSlide}}</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #8A2C02" data-toggle="tab" href="#{{slide.videoSlide|replace({'.': ''})}}">{{slide.videoSlide}}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
+                <div class="col-lg-9 mt-4 mt-lg-0">
+                    <div class="tab-content">
+                        {% for slide in slides %}
+                            {% if slide.textSlide is empty and slide.videoSlide is empty %}
+                                <div class="tab-pane  show" id='{{slide.imageSlide|replace({'.': ''})}}'>
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <div>
+                                                {{ include('formation/image.html.twig') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elseif slide.imageSlide is empty and slide.videoSlide is empty %}
+                                <div class="tab-pane  show " id='{{slide.textSlide|replace({'.': ''})}}'>
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <div>
+                                                {{ include('formation/pdf.html.twig') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="tab-pane  show" id='{{slide.videoSlide|replace({'.': ''})}}'>
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <div>
+                                                {{ include('formation/video.html.twig') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Cource Details Tabs Section -->
+{% endblock %}

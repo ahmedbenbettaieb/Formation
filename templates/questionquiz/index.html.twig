@@ -1,0 +1,72 @@
+
+{% block body %}
+    <form style="margin-top: 25px" action="{{ path('quiz_show',{'id':quiz.id}) }}" method="post">
+        <div class="input-group " style="width: 70%;margin: auto">
+            <input type="text" class="form-control" placeholder="rechercher ..." id="search" name="search" value="{{ search }} ">
+            <div class="input-group-append" style="background-color: #D75404">
+                <span class="input-group-text" style="height: 36px;background-color: #D75404">
+                     <button style="border: none;color: white;background-color: #D75404">{{ button_label|default('Rechercher') }}</button>
+                </span>
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="2"><h1> Questions</h1></th>
+            <th colspan="2"><h5><a href="{{ path('questionquiz_new',{'id':quiz.id}) }}"><i style="font-size: 24px;margin-right: 5px;" class="fa fa-plus-square" aria-hidden="true"></i> New Question </a></h5></th>
+            <th colspan="2"><a  href="" data-toggle="modal" data-target="#myModal"><h3>Preview</h3></a></th>
+        </tr>
+            <tr>
+                <th>Question Posée</th>
+                <th>Reponse Correcte</th>
+                <th>Reponse Fausse 1</th>
+                <th>Reponse Fausse 2</th>
+                <th>Reponse Fausse 3</th>
+                <th>Points</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for questionquiz in questionquizzes %}
+            <tr>
+                <td>{{ questionquiz.designation }}</td>
+                <td>{{ questionquiz.reponseCorrecte }}</td>
+                <td>{{ questionquiz.reponseFausse1 }}</td>
+                <td>{{ questionquiz.reponseFausse2 }}</td>
+                <td>{{ questionquiz.reponseFausse3 }}</td>
+                <td>{{ questionquiz.note }}</td>
+                <td>
+                    <a href="{{ path('questionquiz_show', {'id': questionquiz.id}) }}"><i style="font-size:24px;" class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('questionquiz_edit', {'id': questionquiz.id}) }}"><i style="font-size:24px;margin-left: 20px;" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">{{ quiz.sujet }}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    {% set i = 1 %}
+                    {% for question in quiz.questions %}
+                        {{  include('quiz_and_test_front/_form_answers.html.twig') }}
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

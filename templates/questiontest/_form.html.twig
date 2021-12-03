@@ -1,0 +1,54 @@
+<style>
+    .errors{
+        color: red;
+    }
+</style>
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+<div class="form-group">
+    <h5>{{ form_label(form.designation,"Question Posée :") }}</h5>
+    <div class="errors">
+        {{ form_errors(form.designation) }}
+    </div>
+    {{ form_widget(form.designation, { 'attr': {'class': 'form-control'} }) }}
+</div>
+<div class="form-group">
+    <h5>{{ form_label(form.reponseCorrecte,"Reponse Correcte :") }}</h5>
+    <div class="errors">
+        {{ form_errors(form.reponseCorrecte) }}
+    </div>
+    {{ form_widget(form.reponseCorrecte, { 'attr': {'class': 'form-control'} }) }}
+</div>
+<div class="form-group">
+    <h5>{{ form_label(form.reponseFausse1,"proposition 1 :") }}</h5>
+    <div class="errors">
+        {{ form_errors(form.reponseFausse1) }}
+    </div>
+    {{ form_widget(form.reponseFausse1, { 'attr': {'class': 'form-control'} }) }}
+</div>
+<div class="form-group">
+    <h5> {{ form_label(form.reponseFausse2,"proposition 2 :") }}</h5>
+    <div class="errors">
+        {{ form_errors(form.reponseFausse2) }}
+    </div>
+    {{ form_widget(form.reponseFausse2, { 'attr': {'class': 'form-control'} }) }}
+</div>
+<div class="form-group">
+    <h5>{{ form_label(form.reponseFausse3,"proposition 3 :") }}</h5>
+    <div class="errors">
+        {{ form_errors(form.reponseFausse3) }}
+    </div>
+    {{ form_widget(form.reponseFausse3, { 'attr': {'class': 'form-control'} }) }}
+</div>
+<div class="form-group">
+    <h5>{{ form_label(form.note,"Nombre de points pour cette question:") }}</h5>
+    <div class="errors">
+        {{ form_errors(form.note) }}
+    </div>
+    {{ form_widget(form.note, { 'attr': {'class': 'form-control'} }) }}
+</div>
+
+<div class="form-group">
+    <button style="width: 40%;margin: auto" class="btn btn-dark btn-lg btn-block">{{ button_label|default('Save') }}</button>
+</div>
+
+{{ form_end(form) }}

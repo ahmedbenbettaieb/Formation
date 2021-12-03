@@ -1,0 +1,51 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+<br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>DateNaissance</th>
+                <th>Sexe</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Status</th>
+                <th>PhotoProfil</th>
+                <th>CurriculumVitae</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.dateNaissance }}</td>
+                <td>{{ user.sexe }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.login }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.status }}</td>
+                <td>{{ user.photoProfil }}</td>
+                
+                <td>{{ user.curriculumVitae }}</td>
+                <td>
+                    {% if not user.curriculumVitae is empty or user.curriculumVitae !="" %}<a href="{{ path('cv_formateur', {'id': user.id}) }}"  target="_blank"><font color="blue">Voir CV</font></a>{% endif %}
+                    <a href="{{ path('approuver_formateur', {'id': user.id}) }}"><font color="blue">Approuver</font></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

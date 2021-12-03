@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test index{% endblock %}
+
+{% block body %}
+
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="4"><h1 style="margin-top: 150px;">Notes Test : {{ test.sujet }}</h1></th>
+        </tr>
+        <tr>
+            <th>Nom & Prenom</th>
+            <th>Note</th>
+            <th>Status</th>
+            <th>Pourcentage </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set percent = test.getTotalPoint() %}
+        {% for note in notes %}
+            <tr>
+                <td>{{ note.idEtudiant.nom }}  {{ note.idEtudiant.prenom }}</td>
+                <td>{{ note.noteObtenue }}</td>
+                {% if(note.noteObtenue/percent) > 0.7 %}
+                    <td>Admis</td>
+                {% else %}
+                    <td>Echoué</td>
+                {% endif %}
+                <td>{{ ((note.noteObtenue/percent)*100) | round }} %</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="row">
+        {{ render_chart(chart)}}
+    </div>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}.
+    {% endblock %}
+{% endblock %}
+

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Formation{% endblock %}
+
+{% block body %}
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h2>Ajouter une formation</h2>
+            <p>Bienvenue {{ app.user.prenom }} à votre espace d'ajout ! </p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+                    <div class="box featured">
+                        <h3>Formation</h3>
+                            {{ include('formation/_form.html.twig') }}
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-6 mt-4 mt-md-0">
+                    <div class="box featured">
+                        <h3>Nom du slide</h3>
+                        <table class="table" >
+                            <thead>
+                            <tr>
+                                <th>Nom du slide</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for slide in slides %}
+                                <tr>
+
+                                    {% if slide.textSlide is empty and slide.videoSlide is empty %}
+                                        <td>{{slide.imageSlide}}</td>
+
+                                    {% elseif slide.imageSlide is empty and slide.videoSlide is empty %}
+                                        <td>{{slide.textSlide}}</td>
+
+                                    {% else %}
+                                        <td>{{slide.videoSlide}}</td>
+
+                                    {% endif %}
+
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+                    <div class="box featured">
+                        <h3>Ajouter slide</h3>
+                        {{ include('slide/new.html.twig') }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+
+    </section><!-- End Pricing Section -->
+
+
+
+    {{ include('formation/returnDelete.html.twig', {'button_label': 'Retourner a la liste'}) }}
+{% endblock %}

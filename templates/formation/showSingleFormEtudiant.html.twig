@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous Les Formations{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h2>Formation du {{ formation.titre }}</h2>
+            <p>Bienvenue a nôtre formation </p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <h3>Formation du {{ formation.titre }}</h3>
+                    <p>
+                        Formation du {{ formation.description}} </p>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Formateur</h5>
+                        <p><a href="#">{{ user.prenom }}</a></p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Frais de cours</h5>
+                        <p>Gratuit</p>
+                    </div>
+
+
+                    {% if abonnement is null %}
+                    <form  method="post" name="titre" action="{{ path('formation_abonne', {'idForm': formation.id , 'idUser': app.user.id}) }}">
+                        <button  type="submit" class="btn btn-outline-danger" style="width: 350px" >Abonné</button>
+                    </form>
+                    {% else %}
+                    <form  method="post" name="titre" action="{{ path('formation_desabonne', {'idForm': formation.id , 'idUser': app.user.id}) }}">
+                        <button  type="submit" class="btn btn-outline-danger" style="width: 350px" >Désabonné</button>
+                    </form>
+                    {% endif %}
+                    {% if abonnement is null %}
+                    {% else %}
+                        {% if abonnement.rated == 0 %}
+                        <br>
+                        <div  align="center">
+                        <i class="fa fa-star fa-2x" data-index="0"></i>
+                        <i class="fa fa-star fa-2x" data-index="1"></i>
+                        <i class="fa fa-star fa-2x" data-index="2"></i>
+                        <i class="fa fa-star fa-2x" data-index="3"></i>
+                        <i class="fa fa-star fa-2x" data-index="4"></i>
+                            {% else %}
+                                <br>
+                            <div  align="center" class="another">
+                                {% if  formation.note is null%}
+                                {% else %}
+                                {% for i in 0..formation.note-1 %}
+                                    {% if i<= 5 %}
+                                             <i class="fas fa-star" ></i>
+                                    {% endif %}
+                                {% endfor %}
+                                    {% endif %}
+                            </div>
+                            {% endif %}
+                </div>
+
+
+
+                    {% endif %}
+                    <script src="http://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+                    <script>
+                        var ratedIndex = -1, uID = 0;
+
+                        $(document).ready(function () {
+                            resetStarColors();
+
+                            if (localStorage.getItem('ratedIndex') != null) {
+                                setStars(parseInt(localStorage.getItem('ratedIndex')));
+                                uID = localStorage.getItem('uID');
+                            }
+
+                            $('.fa-star').on('click', function () {
+                                ratedIndex = parseInt($(this).data('index'));
+                                localStorage.setItem('ratedIndex', ratedIndex);
+                                saveToTheDB();
+                            });
+
+                            $('.fa-star').mouseover(function () {
+                                resetStarColors();
+                                var currentIndex = parseInt($(this).data('index'));
+                                setStars(currentIndex);
+                            });
+
+                            $('.fa-star').mouseleave(function () {
+                                resetStarColors();
+
+                                if (ratedIndex != -1)
+                                    setStars(ratedIndex);
+                            });
+                        });
+
+                        function saveToTheDB() {
+                            $.ajax({
+                                url: "{{ path('rate') }}",
+                                method: "POST",
+                                dataType: 'json',
+                                data: {
+                                    save: 1,
+                                    uID: {{ app.user.id }},
+                                    fid:{{ formation.id }},
+                                    ratedIndex: ratedIndex
+                                }, success: function (r) {
+                                    uID = r.id;
+                                    localStorage.setItem('uID', uID);
+                                }
+                            });
+                        }
+
+                        function setStars(max) {
+                            for (var i=0; i <= max; i++)
+                                $('.fa-star:eq('+i+')').css('color', 'red');
+                        }
+
+                        function resetStarColors() {
+                            $('.fa-star').css('color', 'black');
+                        }
+                    </script>
+
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Cource Details Section -->
+
+    <!-- ======= Cource Details Tabs Section ======= -->
+    <section id="cource-details-tabs" class="cource-details-tabs">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-3">
+                    <ul class="nav nav-tabs flex-column">
+                        {% for slide in slides %}
+                            {% if slide.textSlide is empty and slide.videoSlide is empty %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" data-toggle="tab" href="#{{slide.imageSlide|replace({'.': ''})}}">{{slide.imageSlide}}</a>
+                                </li>
+                            {% elseif slide.imageSlide is empty and slide.videoSlide is empty %}
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#{{slide.textSlide|replace({'.': ''})}}">{{slide.textSlide}}</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#{{slide.videoSlide|replace({'.': ''})}}">{{slide.videoSlide}}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
+                <div class="col-lg-9 mt-4 mt-lg-0">
+                    <div class="tab-content">
+                        {% for slide in slides %}
+                            {% if slide.textSlide is empty and slide.videoSlide is empty %}
+                                <div class="tab-pane  show" id='{{slide.imageSlide|replace({'.': ''})}}'>
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <div>
+                                                {{ include('formation/image.html.twig') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elseif slide.imageSlide is empty and slide.videoSlide is empty %}
+                                <div class="tab-pane  show " id='{{slide.textSlide|replace({'.': ''})}}'>
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <div>
+                                                {{ include('formation/pdf.html.twig') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="tab-pane  show" id='{{slide.videoSlide|replace({'.': ''})}}'>
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <div>
+                                                {{ include('formation/video.html.twig') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section><!-- End Cource Details Tabs Section -->
+{% endblock %}

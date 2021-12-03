@@ -1,0 +1,32 @@
+<style>
+    .errors{
+        color: red;
+    }
+</style>
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+<div class="form-group">
+    {{ form_label(form.sujet,"Sujet Test :") }}
+    <div class="errors">
+        {% if form_errors(form.sujet) is not empty %}
+          <span class="badge badge-pill badge-danger">Error : </span>
+          {{ form_errors(form.sujet) }}
+        {% endif %}
+    </div>
+    {{ form_widget(form.sujet, { 'attr': {'class': 'form-control'} }) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.duree,"Durrée  :") }}
+    <div class="errors">
+        {{ form_errors(form.duree) }}
+    </div>
+    {{ form_widget(form.duree, { 'attr': {'class': 'form-control'} }) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.idFormation,"Formation  :") }}
+    {{ form_widget(form.idFormation, { 'attr': {'class': 'form-control'} }) }}
+</div>
+
+ <button style="width: 40%;margin: auto" class="btn btn-dark btn-lg btn-block">{{ button_label|default('Sauvegarder') }}</button>
+
+
+{{ form_end(form) }}

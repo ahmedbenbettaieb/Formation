@@ -1,0 +1,25 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate' }}) }}
+
+<div class="row">
+
+    <div class="col">
+        {{ form_label(form.titre) }}
+        <div style="color: red">
+            {{ form_errors(form.titre) }}
+        </div>
+
+        {{ form_widget(form.titre) }}
+    </div>
+    <div class="col" id="some-custom-id">
+        {{ form_label(form.description) }}
+
+        <div style="color: red">
+            {{ form_errors(form.description) }}
+        </div>
+              {{ form_widget(form.description) }}
+    </div>
+</div>
+
+    {{ form_widget(form) }}
+<button class="get-started-btn">{{ button_label|default('Gérer Formation') }}</button>
+{{ form_end(form) }}

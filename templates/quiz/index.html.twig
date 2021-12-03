@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <h1 style="margin-top: 150px;"></h1>
+
+    <form action="{{ path('quiz_index',{'id':app.user.id}) }}" method="post">
+        <div class="input-group " style="width: 60%;margin: auto">
+            <input type="text" class="form-control" placeholder="rechercher ..." id="search" name="search" value="{{ search }}">
+            <div class="input-group-append" style="background-color: #D75404">
+                <span class="input-group-text" style="height: 36px;background-color: #D75404">
+                     <button style="border: none;color: white;background-color: #D75404">{{ button_label|default('Rechercher') }}</button>
+                </span>
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="1"><h1 >Quiz </h1></th>
+            <th><h5><a href="{{ path('quiz_new',{'id': app.user.id } )}}"><i  style="font-size: 24px" class="fa fa-plus-square " aria-hidden="true"></i> New Quiz</a></h5></th>
+        </tr>
+            <tr>
+                <th>Sujet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizzes %}
+            <tr>
+                <td>{{ quiz.sujet }}</td>
+                <td>
+                    <a href="{{ path('quiz_show', {'id': quiz.id}) }}"><i style="font-size:24px;" class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('quiz_edit', {'id': quiz.id}) }}"> <i style="font-size:24px;margin-left: 20px;" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

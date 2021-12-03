@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h2>Formations</h2>
+            <p>Bienvenue {{ app.user.prenom }} à votre espace de formation ! </p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" onclick="location.href='/formation/indexform'" style="cursor: pointer;">
+                    <div class="member">
+               {#         src="{{asset('img/memories/section_tittle_flowre.png' )}}"#}
+
+                        <img src="{{asset('img/touslesforms.jpg')}}" class="img-fluid" alt="">
+                        <div class="member-content">
+                            <h4>TOUS LES FORMATIONS</h4>
+                            <span> Trouver ton formation préférer</span>
+                            <p>
+                                L’éducation est l’arme la plus puissante qu’on puisse utiliser pour changer le monde.<br>
+                                ~Nelson Mandela
+                            </p>
+                            <div class="social">
+                                <a href=""><i class="icofont-library"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" onclick="location.href='/formation/indexmesform/'+{{app.user.id}}; " style="cursor: pointer;">
+                    <div class="member">
+                        <img src="{{asset('img/mesforms.jpg')}}" class="img-fluid" alt="">
+                        <div class="member-content">
+                            <h4>MES FORMATIONS</h4>
+                            <span> Gérer tes formations</span>
+                            <p>
+                                Former les hommes ce n’est pas remplir un vase, c’est allumer un feu.<br>
+                                ~Aristophane
+                            </p>
+                            <div class="social">
+                                <a href=""><i class="icofont-list"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" onclick="location.href='/formation/new/'+{{app.user.id}};" style="cursor: pointer;" >
+                    <div class="member">
+                        <img src="{{asset('img/ajoutform.jfif')}}" class="img-fluid" alt="">
+                        <div class="member-content">
+                            <h4>AJOUTER FORMATION</h4>
+                            <span>Créer une nouvelle formation</span>
+                            <p>
+                                Le meilleur moyen de réussir, c’est toujours d’essayer encore une fois.<br>
+                                ~Thomas Edison
+                            </p>
+                            <div class="social">
+                                <a href=""><i class="icofont-contact-add"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Trainers Section -->
+{% endblock %}

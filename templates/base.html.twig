@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>E-Senpai TEK-UP Plateforme </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href={{ asset("img/icon.png")}} rel="icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href={{ asset("vendor/bootstrap/css/bootstrap.min.css")}} rel="stylesheet">
+  <link href={{ asset("vendor/icofont/icofont.min.css")}} rel="stylesheet">
+  <link href={{ asset("vendor/boxicons/css/boxicons.min.css")}} rel="stylesheet">
+  <link href={{ asset("vendor/remixicon/remixicon.css")}} rel="stylesheet">
+  <link href={{ asset("vendor/owl.carousel/assets/owl.carousel.min.css")}} rel="stylesheet">
+  <link href={{ asset("vendor/animate.css/animate.min.css")}} rel="stylesheet">
+  <link href={{ asset("vendor/aos/aos.css")}} rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href={{ asset("css/style.css")}} rel="stylesheet">
+  <style>
+    .question{
+      margin-left: 50px;
+      margin-top: 8px;
+    }
+  </style>
+  <!-- mercuryseriesflashy bundle Files -->
+  <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+  <!-- =======================================================
+  * Template Name: Mentor - v2.2.1
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+{% block header %}
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h4 class="logo mr-auto"><a href="/home">E-Senpai</a></h4>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      {% if app.user %}
+      <nav class="nav-menu d-none d-lg-block" style="margin-right: -20px">
+        <ul>
+          <li><a href="/home">Accueil</a></li>
+          <li><a href="/profil">Profil</a></li>
+          {% if app.user.role == 'Formateur' %}
+          <li><a href="/formation/accueilForm">Formations</a></li>
+            {% else %}
+              <li><a href="/formation/accueilFormEtudiant">Formations</a></li>
+          {% endif %}
+
+
+          <li class="drop-down"><a href="/quiz_front">Quiz&Test</a>
+            <ul>
+              {% if (app.user.role | lower) == "formateur" %}
+                <li><a href="/quiz/{{ app.user.id }}">Quiz</a></li>
+                <li><a href="/test/{{ app.user.id }}">Test</a></li>
+                {% elseif (app.user.role | lower) == "etudiant" %}
+                  <li><a href="/quiz_front">Quiz</a></li>
+                  <li><a href="/quiz_front">Test</a></li>
+                {% endif %}
+            </ul>
+          </li>
+          <li><a href="{{ path('reclamation', {'id': app.user.id}) }}">Réclamations</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+      {% endif %}
+
+      {% if not app.user %}<a href="/login" class="get-started-btn">Allons-y</a>{% endif %}
+      {% if app.user %}<a href="/logout" class="get-started-btn">Déconnecter</a>{% endif %}
+
+    </div>
+  </header>
+  <!-- End Header -->
+  {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+{% endblock %}
+
+{% block body %}
+<h4>Error Loading Page</h4>
+{% endblock %}
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container d-md-flex py-4">
+
+      <div class="mr-md-auto text-center text-md-left">
+        <div class="copyright">
+          &copy; Copyright <strong><span>E-SENPAI TEK-UP</span></strong>. All Rights Reserved
+        </div>
+
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  
+  <li><a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a></li>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src={{ asset("vendor/jquery/jquery.min.js")}}></script>
+  <script src={{ asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}></script>
+  <script src={{ asset("vendor/jquery.easing/jquery.easing.min.js")}}></script>
+  <script src={{ asset("vendor/php-email-form/validate.js")}}></script>
+  <script src={{ asset("vendor/waypoints/jquery.waypoints.min.js")}}></script>
+  <script src={{ asset("vendor/counterup/counterup.min.js")}}></script>
+  <script src={{ asset("vendor/owl.carousel/owl.carousel.min.js")}}></script>
+  <script src={{ asset("vendor/aos/aos.js")}}></script>
+
+  <!-- Template Main JS File -->
+  <script src={{ asset("js/main.js")}}></script>
+
+</body>
+
+</html>

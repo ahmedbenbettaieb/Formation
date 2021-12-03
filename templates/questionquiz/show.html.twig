@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center" style="margin-top: 150px">Question quiz</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Designation</th>
+                <td>{{ questionquiz.designation }}</td>
+            </tr>
+            <tr>
+                <th>ReponseCorrecte</th>
+                <td>{{ questionquiz.reponseCorrecte }}</td>
+            </tr>
+            <tr>
+                <th>ReponseFausse1</th>
+                <td>{{ questionquiz.reponseFausse1 }}</td>
+            </tr>
+            <tr>
+                <th>ReponseFausse2</th>
+                <td>{{ questionquiz.reponseFausse2 }}</td>
+            </tr>
+            <tr>
+                <th>ReponseFausse3</th>
+                <td>{{ questionquiz.reponseFausse3 }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ questionquiz.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('quiz_show', {'id': questionquiz.idQuiz.id}) }}">back to list</a>
+
+    <a href="{{ path('questionquiz_edit', {'id': questionquiz.id}) }}"><i style="font-size:24px;margin-left: 20px;" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
+    {{ include('questionquiz/_delete_form.html.twig') }}
+{% endblock %}

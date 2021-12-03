@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.dateNaissance) }}
+    <br>
+    {{ form_row(form.sexe) }}
+    <br>
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.biography) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

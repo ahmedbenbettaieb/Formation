@@ -1,0 +1,80 @@
+{% extends 'admin.html.twig' %}
+
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Test</h1>
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ test.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Formateur</th>
+                <td>{{ test.idFormateur.prenom|upper }}  {{ test.idFormateur.nom|upper }}</td>
+            </tr>
+            <tr>
+                <th>NbEtudiantPasses</th>
+                <td>{{ test.nbEtudiantPasses }}</td>
+            </tr>
+            <tr>
+                <th>NbEtudiantsAdmis</th>
+                <td>{{ test.nbEtudiantsAdmis }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ test.duree }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-striped text-center" style="margin-top: 75px">
+            <thead>
+            <tr>
+                <th colspan="4"><h1 >Notes Test </h1></th>
+            </tr>
+            <tr>
+                <th>Nom & Prenom</th>
+                <th>Note</th>
+                <th>Status</th>
+                <th>Pourcentage </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set percent = test.getTotalPoint() %}
+            {% for note in notes %}
+                <tr>
+                    <td>{{ note.idEtudiant.nom }}  {{ note.idEtudiant.prenom }}</td>
+                    <td>{{ note.noteObtenue }}</td>
+                    {% if(note.noteObtenue/percent) > 0.7 %}
+                        <td>Admis</td>
+                    {% else %}
+                        <td>Echoué</td>
+                    {% endif %}
+                    <td>{{ ((note.noteObtenue/percent)*100) | round }} %</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="questions" style="margin-top: 75px;margin-left: 20%">
+            <h1 class="text-center">Questionnaire</h1>
+            {%  set i = 1 %}
+            {% for question in questiontest %}
+                {{  include('quiz_and_test_front/_form_answers.html.twig') }}
+                {% set i = i + 1 %}
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+        </div>
+
+    </div>
+    <h1 style="margin-bottom: 100px;"></h1>
+{% endblock %}

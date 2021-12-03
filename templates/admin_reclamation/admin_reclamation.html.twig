@@ -1,0 +1,47 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Vos Réclamations !{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <h3>Réclamations</h3>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Statut</th>
+                <th>Sujet</th>
+                <th>Admin Traitant</th>
+                <th>Contenu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.statut }}</td>
+                <td>{{ reclamation.sujetReclamation }}</td>
+                {% if reclamation.AdminTrait == 0 %}
+                <td>-</td>
+                {% else %}
+                <td>{{ reclamation.AdminTrait }}</td>
+                {% endif %}
+                <td>{{ reclamation.contenu }}</td>
+                {% if reclamation.statut == "En attente" %}
+                <td><a href="{{ path('admin_reclamation_reponse', {'id': reclamation.id, 'idu': app.user.id}) }}"><font color="blue">Répondre</font></a></td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        {{knp_pagination_render(reclamations) }}
+        </tbody>
+    </table>
+    <br>
+    <br>
+
+{% endblock %}
